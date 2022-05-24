@@ -3,6 +3,8 @@ ARG VARIANT=alpine
 
 FROM python:${PYTHON_VERSION}-${VARIANT}
 
+ENV PYTHONUNBUFFERED 1
+
 RUN apk add --no-cache make build-base libev-dev && \
     pip install --no-cache-dir mockerinho && \
     mkdir /simulations
