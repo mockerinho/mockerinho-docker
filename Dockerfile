@@ -1,5 +1,12 @@
-FROM python:3.10-alpine
+ARG PYTHON_VERSION=3.8
+ARG VARIANT=alpine
 
-RUN pip install mockerinho
+FROM python:${PYTHON_VERSION}-${VARIANT}
+
+RUN apk add --no-cache make build-base libev-dev && \
+    pip install --no-cache-dir mockerinho && \
+    mkdir /simulations
 
 EXPOSE 8000
+
+CMD ["mockerinho", "-D", "/simulations"]
